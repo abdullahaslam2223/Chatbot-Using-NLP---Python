@@ -10,6 +10,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 import warnings
 warnings.filterwarnings('ignore')
 
+from ChatbotResponse import prepare_response
+
 import nltk
 from nltk.stem import WordNetLemmatizer
 nltk.download('popular', quiet=True)
@@ -23,21 +25,13 @@ connection = pyodbc.connect(
     )
 
 cursor = connection.cursor()
-cursor.execute("select * from tbl_products_stone")
-results = cursor.fetchall()
-length = len(results)
-total_products = []
-total_products.append(f"There are total {length} products.")
-total_products.append(f"This website offers a selection of {length} products.")
-total_products.append(f"You can find {length} products listed on this website.")
-total_products.append(f"There exist {length} products available for purchase on this website.")
-total_products.append(f"You'll discover a total of {length} products on this website.")
+data = prepare_response(cursor)
 
 
 # Open the text file in write mode
 with open('data.txt', 'w') as file:
     # Iterate over each element in the array
-    for sentence in total_products:
+    for sentence in data:
         # Write the element to a new line in the file
         file.write(sentence + '\n')
 
