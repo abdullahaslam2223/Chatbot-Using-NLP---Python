@@ -1,10 +1,11 @@
-There are total 6 products.
+There are total 7 products.
 We have Aquamarine and it's price is Rs: 12300.
 We have Diamond and it's price is Rs: 1000.
 We have Moonstone and it's price is Rs: 30000.
 We have Garnet and it's price is Rs: 23000.
 We have Aquamarine and it's price is Rs: 23000.
 We have Emerald and it's price is Rs: 29500.
+We have Feroza and it's price is Rs: 25000.
 We have these colors , Yellow, Red, Green, Blue, Black, Navy Blue.
 We have these sizes , Small, Medium.
 We have these categories , Sapphire, Zircon, Emerald, test.
