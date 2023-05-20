@@ -42,6 +42,8 @@ with open('data.txt', 'w') as file:
 
 # Chatbot Starts from here
 
+# exit()
+
 f=open('data.txt','r',errors = 'ignore')
 raw=f.read()
 raw = raw.lower()# converts to lowercase
@@ -64,7 +66,7 @@ def LemNormalize(text):
 
 
 
-GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up","hey",)
+GREETING_INPUTS = ("hello", "hi", "greetings", "salam", "what's up","hey",)
 GREETING_RESPONSES = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me"]
 def greeting(sentence):
  
