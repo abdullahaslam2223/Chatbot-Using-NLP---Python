@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from fastapi import FastAPI
 import pyodbc
-import io
+# import io
 import random
 import string
 import warnings
@@ -127,4 +127,4 @@ def get_response(question):
             sent_tokens.remove(user_response)
 
 
-    return res
+    return res.capitalize()
