@@ -10,9 +10,8 @@ def prepare_response(cursor):
     return data
 
 
-
 def product_responses(data, cursor):
-    cursor.execute("select * from tbl_products_stone")
+    cursor.execute("SELECT * FROM tbl_products_stone")
     results = cursor.fetchall()
 
     # length responses
