@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import pyodbc
 # import io
 import random
@@ -18,6 +19,17 @@ from nltk.stem import WordNetLemmatizer
 nltk.download('popular', quiet=True)
 
 app = FastAPI()
+
+origins = ["https://localhost:44364"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Define a request body model
 class Item(BaseModel):
