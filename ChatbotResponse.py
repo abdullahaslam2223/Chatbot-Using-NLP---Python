@@ -23,12 +23,12 @@ def product_responses(data, cursor):
         # data.append(f"Absolutely, {name} is ready for purchase at Rs: {price}.")
         # data.append(f"Yes, {name} is on offer with the price of Rs: {price}.")
         # data.append(f"True, {name} is present and ready you can buy it at Rs: {price}.")
+
+        data.append(f"We have {name}, it's sock is {quantity} and price is {price}/- pkr.")
+        data.append(f"We currently have a supply of {quantity} {name}s in stock, and the price for each {name} is {price}/- pkr.")
         
         # stock quantity responses
-        if quantity:
-            data.append(f"We have {name}s available and it's in sock is {quantity} and price is Rs: {price}.")
-            data.append(f"Yes, {name} is in supply having stock of {quantity} with the price of Rs: {price}.")
-        else:
+        if quantity == 0:
             data.append(f"{name} is not in stock")
 
 
