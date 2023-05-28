@@ -54,45 +54,45 @@ def get_response(question):
     )
 
     cursor = connection.cursor()
-    data = prepare_response(cursor)
+    corpus = prepare_response(cursor)
 
 
-    # Open the text file in write mode
-    with open('data.txt', 'w') as file:
-        # Iterate over each element in the array
-        for sentence in data:
-            # Write the element to a new line in the file
-            file.write(sentence + '\n')
-
-    # Data Preparing Ends Here
+    # with open('data.txt', 'w') as file:
+    #     for sentence in corpus:
+    #         file.write(sentence + '\n')
 
 
+    # with open('data.txt', 'r') as file:
+    #     content = file.read()
+
+    # corpus = nltk.sent_tokenize(content)
 
 
-    # Chatbot Starts from here
+    nltk.download('punkt')
 
-    # exit()
+    def tokenize(text):
+        return nltk.word_tokenize(text.lower())
+    
 
-    f=open('data.txt','r',errors = 'ignore')
-    raw=f.read()
-    raw = raw.lower()# converts to lowercase
+    corpus_tokens = [tokenize(text) for text in corpus]
 
+    # Convert tokens to strings
+    corpus_strings = [' '.join(tokens) for tokens in corpus_tokens]
 
+    # Create TF-IDF vectorizer
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(corpus_strings)
 
-    sent_tokens = nltk.sent_tokenize(raw)# converts to list of sentences 
-    word_tokens = nltk.word_tokenize(raw)# converts to list of words
-
-
-
-    lemmer = nltk.stem.WordNetLemmatizer()
-    #WordNet is a semantically-oriented dictionary of English included in NLTK.
-    def LemTokens(tokens):
-        return [lemmer.lemmatize(token) for token in tokens]
-    remove_punct_dict = dict((ord(punct), None) for punct in string.punctuation)
-
-    def LemNormalize(text):
-        return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punct_dict)))
-
+    def get_most_similar_answer(question):
+        question_tokens = tokenize(question)
+        question_string = ' '.join(question_tokens)
+        question_vector = vectorizer.transform([question_string])
+        similarities = cosine_similarity(question_vector, tfidf_matrix)
+        most_similar_index = similarities.argmax()
+        if similarities[0][most_similar_index] > 0:
+            return corpus[most_similar_index]
+        else:
+            return None
 
 
     GREETING_INPUTS = ("hello", "hi", "greetings", "salam", "what's up","hey",)
@@ -104,28 +104,6 @@ def get_response(question):
                 return random.choice(GREETING_RESPONSES)
             
 
-
-
-    def response(user_response):
-        robo_response=''
-        sent_tokens.append(user_response)
-        TfidfVec = TfidfVectorizer(tokenizer=LemNormalize, stop_words='english')
-        tfidf = TfidfVec.fit_transform(sent_tokens)
-        vals = cosine_similarity(tfidf[-1], tfidf)
-        idx=vals.argsort()[0][-2]
-        flat = vals.flatten()
-        flat.sort()
-        req_tfidf = flat[-2]
-        if(req_tfidf==0):
-            robo_response=robo_response+"Please ask questions related to this website"
-            return robo_response
-        else:
-            robo_response = robo_response+sent_tokens[idx]
-            return robo_response        
-
-
-
-
     user_response = question
     user_response=user_response.lower()
     res = ""
@@ -135,8 +113,10 @@ def get_response(question):
         if(greeting(user_response)!=None):
             res = greeting(user_response)
         else:
-            res = response(user_response)
-            sent_tokens.remove(user_response)
-
-
+            answer = get_most_similar_answer(user_response)
+            if answer:
+                res = answer
+            else:
+                res = "Please ask questions related to this website"
+    
     return res.capitalize()

@@ -17,7 +17,7 @@ def product_responses(data, cursor):
     # length responses
     length = len(results)
     data.append(f"There are total {length} products.")
-    # data.append(f"This website offers a selection of {length} products.")
+    data.append(f"This website offers a selection of {length} products.")
     # data.append(f"You can find {length} products listed on this website.")
     # data.append(f"There exist {length} products available for purchase on this website.")
     # data.append(f"You'll discover a total of {length} products on this website.")
@@ -27,13 +27,13 @@ def product_responses(data, cursor):
         id_, name, price, description, image, *rest = product
         price = int(price)
         data.append(f"We have {name} and it's price is Rs: {price}.")
-        # data.append(f"Indeed, {name} can be obtained and its cost is Rs: {price}.")
-        # data.append(f"Affirmative, {name} is accessible you can buy it at Rs: {price}.")
-        # data.append(f"Absolutely, {name} is ready for purchase at Rs: {price}.")
-        # data.append(f"Yes, {name} is on offer with the price of Rs: {price}.")
-        # data.append(f"Correct, {name} is available for you at the cost of Rs: {price}.")
-        # data.append(f"True, {name} is present and ready you can buy it at Rs: {price}.")
-        # data.append(f"Yes, {name} is in supply with the price of Rs: {price}.")
+        data.append(f"Indeed, {name} can be obtained and its cost is Rs: {price}.")
+        data.append(f"Affirmative, {name} is accessible you can buy it at Rs: {price}.")
+        data.append(f"Absolutely, {name} is ready for purchase at Rs: {price}.")
+        data.append(f"Yes, {name} is on offer with the price of Rs: {price}.")
+        data.append(f"Correct, {name} is available for you at the cost of Rs: {price}.")
+        data.append(f"True, {name} is present and ready you can buy it at Rs: {price}.")
+        data.append(f"Yes, {name} is in supply with the price of Rs: {price}.")
         
 
     return data

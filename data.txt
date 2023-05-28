@@ -1,9 +1,0 @@
-There are total 4 products.
-We have Aquamarine and it's price is Rs: 2300.
-We have Diamond and it's price is Rs: 1000.
-We have Moonstone and it's price is Rs: 30000.
-We have Aquamarine and it's price is Rs: 23000.
-We have these colors , Yellow, Red, Green, Blue, Black.
-We have these sizes , Small, Medium.
-We have these categories , Sapphire, Zircon, Emerald.
-We have these shapes , Square, Round, Oval, Circle.
