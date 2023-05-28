@@ -117,6 +117,6 @@ def get_response(question):
             if answer:
                 res = answer
             else:
-                res = "Please ask questions related to this website"
+                res = "Please ask relevant question!"
     
     return res.capitalize()
