@@ -24,7 +24,7 @@ def product_responses(data, cursor):
         # data.append(f"Yes, {name} is on offer with the price of Rs: {price}.")
         # data.append(f"True, {name} is present and ready you can buy it at Rs: {price}.")
 
-        data.append(f"We have {name}, it's sock is {quantity} and price is {price}/- pkr.")
+        data.append(f"We have {name}, it's stock is {quantity} and price is {price}/- pkr.")
         data.append(f"We currently have a supply of {quantity} {name}s in stock, and the price for each {name} is {price}/- pkr.")
         
         # stock quantity responses
@@ -92,12 +92,16 @@ def category_responses(data, cursor):
     results = cursor.fetchall()
 
     sentence = "We don't have any categories yet"
+    sentence2 = "We offer a variety of categories to choose from, including "
     if(results):
         sentence = "We have these categories "
         for category in results:
             id_, category_name = category
             sentence += f", {category_name}"
+            sentence2 += f"{category_name}, "
         sentence += "."
+        sentence2 += ". Each category represents a unique selection of precious gemstones that are sure to capture your interest."
     
     data.append(sentence)
+    data.append(sentence2)
     return data
