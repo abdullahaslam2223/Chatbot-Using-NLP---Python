@@ -121,8 +121,8 @@ def get_response(question):
             return robo_response
         else:
             robo_response = robo_response+sent_tokens[idx]
-            return robo_response
-        
+            return robo_response        
+
 
 
 
