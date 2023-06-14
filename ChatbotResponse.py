@@ -100,7 +100,7 @@ def category_responses(data, cursor):
             sentence += f", {category_name}"
             sentence2 += f"{category_name}, "
         sentence += "."
-        sentence2 += ". Each category represents a unique selection of precious gemstones that are sure to capture your interest."
+        sentence2 += ". Each category represents a unique selection of precious gemstones."
     
     data.append(sentence)
     data.append(sentence2)
