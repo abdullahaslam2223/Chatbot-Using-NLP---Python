@@ -24,12 +24,12 @@ def product_responses(data, cursor):
         # data.append(f"Yes, {name} is on offer with the price of Rs: {price}.")
         # data.append(f"True, {name} is present and ready you can buy it at Rs: {price}.")
 
-        data.append(f"We have {name}, it's stock is {quantity} and price is {price}/- pkr.")
-        data.append(f"We currently have a supply of {quantity} {name}s in stock, and the price for each {name} is {price}/- pkr.")
+        data.append(f"We have {name} with {quantity} in stock, priced at {price}/- PKR.")
+        data.append(f"We have {quantity} {name}s available in stock, priced at {price}/- PKR each")
         
         # stock quantity responses
         if quantity == 0:
-            data.append(f"{name} is not in stock")
+            data.append(f"{name} out of stock")
 
 
     return data
@@ -40,9 +40,9 @@ def color_responses(data, cursor):
     cursor.execute("SELECT * FROM tbl_stone_colors")
     results = cursor.fetchall()
 
-    sentence = "We don't have any colors yet"
+    sentence = "No colours accessible currently."
     if(results):
-        sentence = "We have these colors "
+        sentence = "colours: "
         for color in results:
             id_, color_name = color
             sentence += f", {color_name}"
@@ -57,9 +57,9 @@ def size_responses(data, cursor):
     cursor.execute("SELECT * FROM tbl_stone_sizes")
     results = cursor.fetchall()
 
-    sentence = "We don't have any sizes yet"
+    sentence = "No sizes accessible currently."
     if(results):
-        sentence = "We have these sizes "
+        sentence = "Sizes: "
         for size in results:
             id_, size_name = size
             sentence += f", {size_name}"
@@ -74,9 +74,9 @@ def shape_responses(data, cursor):
     cursor.execute("SELECT * FROM tbl_stone_shapes")
     results = cursor.fetchall()
 
-    sentence = "We don't have any shapes yet"
+    sentence = "No shapes accessible currently."
     if(results):
-        sentence = "We have these shapes "
+        sentence = "Shapes: "
         for shape in results:
             id_, shape_name = shape
             sentence += f", {shape_name}"
@@ -91,16 +91,15 @@ def category_responses(data, cursor):
     cursor.execute("SELECT * FROM tbl_stone_categories")
     results = cursor.fetchall()
 
-    sentence = "We don't have any categories yet"
-    sentence2 = "We offer a variety of categories to choose from, including "
+    sentence = "Categories not available at present."
+    sentence2 = "Categories offered: "
     if(results):
-        sentence = "We have these categories "
+        sentence = "Category available: "
         for category in results:
             id_, category_name = category
             sentence += f", {category_name}"
             sentence2 += f"{category_name}, "
         sentence += "."
-        sentence2 += ". Each category represents a unique selection of precious gemstones."
     
     data.append(sentence)
     data.append(sentence2)
